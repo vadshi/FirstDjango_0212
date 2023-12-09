@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from MainApp.models import Item
 
 
 # Create your views here.
@@ -12,21 +13,8 @@ items = [
 ]
 
 
-author = {
-    "Имя": "Иван",
-    "Отчество": "Петрович",
-    "Фамилия": "Иванов",
-    "телефон": "8-923-600-01-02",
-    "email": "vasya@mail.ru"
-}
-
 
 def home(request):
-    # text = """
-    # <h1>"Изучаем django"</h1>
-    # <strong>Автор</strong>: <i>Шиховцов В.В.</i>
-    # """
-    # return HttpResponse(text)
     context = {
         "name": "Петров Иван Николаевич",
         "email": "my_mail@mail.ru"
@@ -35,6 +23,13 @@ def home(request):
 
 
 def about(request):
+    author = {
+    "Имя": "Иван",
+    "Отчество": "Петрович",
+    "Фамилия": "Иванов",
+    "телефон": "8-923-600-01-02",
+    "email": "vasya@mail.ru"
+    }
     text = f"""
     <header>
         / <a href="/">Home</a> / <a href="/items"> Items </a> / <a href="/about"> About </a>
@@ -48,9 +43,6 @@ def about(request):
     return HttpResponse(text)
 
 
-# url item/1
-# url item/2
-
 def get_item(request, item_id: int):
     """ По указанному id возвращаем имя и количество"""
     item = next((item for item in items if item["id"] == item_id), None)
@@ -62,18 +54,8 @@ def get_item(request, item_id: int):
     return HttpResponseNotFound(f'Item with id = {item_id} not found.')
 
 
-# <ol>
-#   <li> ... </li>
-#   <li> ... </li>
-#   <li> ... </li>
-#   <li> ... </li>
-# </ol>
 def get_items(request):
-    # result = f"<h2> Список товаров </h2><ol>"
-    # for item in items:
-    #     result += f"""<li><a href="/item/{item["id"]}"> {item["name"]} </a></li> """
-    # result += "</ol>"
-    # return HttpResponse(result)
+    items = Item.objects.all()
     context = {
         "items": items
     }
