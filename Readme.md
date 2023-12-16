@@ -9,7 +9,9 @@
 
 4. `python manage.py migrate`
 
-5. `python manage.py runserver`
+5. `python manage.py loaddata ./data/MainApp.json`  
+
+6. `python manage.py runserver`
 
 ## Запуск терминала в контексте django
 `python manage.py shell_plus --ipython`
