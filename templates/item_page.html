@@ -21,6 +21,14 @@
     <div>
         Описание: {{ item.description }}<br><br>
     </div>
+    <i> Цвета: </i>
+    <ul class="ul_no_mark">
+        {% for color in colors %}
+            <li><div class="div_color" style="background-color:{{color.name}};"></div>&nbsp;&nbsp;{{ color.name }}</li>
+        {% endfor %}
+    </ul>
+    <br/><br/>
+
     <a href="{% url 'items-list' %}"> Назад к списку товаров</a>
 
 
