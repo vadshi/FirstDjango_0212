@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title> Item page</title>
-</head>
-<body>
-    <header>
-        / <a href="/">Home</a> / <a href="/items"> Items </a> / <a href="/about"> About </a>
-    </header>
-    <h1> {{ item.name }} </h1>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    {{ block.super}}
+
+    <link rel="stylesheet" href="{% static 'style.css' %}"
+{% endblock%}
+
+{% block content %}
+
+    {% include "inc_header.html" %}
+    <h1> Товар </h1>
+
+    <span style="font-size: large;"><b> {{ item.name }} </b></span><br> 
+    Brand: <span style="font-size: large;"> {{ item.brand }} </span><br>
     <div>
         Количество: {{ item.count | default:"Товар отсутствует на складе" }} 
     </div>
     <div>
-        Описание: {{ item.description }}
+        Описание: {{ item.description }}<br><br>
     </div>
-    <a href="/items"> Назад к списку товаров</a>
-</body>
-</html>
+    <a href="{% url 'items-list' %}"> Назад к списку товаров</a>
+
+
+{% endblock %}
+

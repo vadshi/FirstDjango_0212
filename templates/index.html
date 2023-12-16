@@ -4,16 +4,16 @@
 
 {% block content %}
 
-{% include "footer.html" %}
+    {% include "inc_header.html" %}
 
-<img width="50px" src="{% static "django.svg" %}" alt="My image">
+    <img width="50px" src="{% static "django.svg" %}" alt="My image">
 
-<h1> Приветствую </h1>
+    <h1> Приветствую </h1>
 
-<span style='color: blue'> Меня зовут: <i>{{ name }}.</i></span><br>
-Мой email для связи: <i> {{ email }}</i><br>
+    <span style='color: blue'> Меня зовут: <i>{{ name }}.</i></span><br>
+    Мой email для связи: <i> {{ email }}</i><br>
 
-Это главная страница сайта.<br>
-<i> Сайт пока в разработке... </i>
+    Это главная страница сайта.<br>
+    <i> Сайт пока в разработке... </i>
 
 {% endblock %}
